@@ -1,4 +1,4 @@
-#AWSTemplateFormatVersion: 2010-09-09
+AWSTemplateFormatVersion: 2010-09-09
 Description: A 3-node Hadoop cluster and its associated security groups
 Parameters:
   VPNPublicIP:

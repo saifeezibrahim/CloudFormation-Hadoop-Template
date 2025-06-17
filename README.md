@@ -1,59 +1,110 @@
-# AWS CloudFormation template for a 3-node Hadoop cluster
+# 🏗️ AWS CloudFormation Hadoop Cluster Template (3-Node) — Learning Lab
 
-If you want to start playing around with Hadoop, here is a CloudFormation template to build a 3-node cluster of EC2 instances, with fix public IPs addresses and the appropriate `SecurityGroups` for HDFS.
+> **A hands-on, beginner-friendly project to deploy your own Hadoop cluster on AWS using CloudFormation. Perfect for DevOps & Big Data learners!**
 
-## Usage
+---
 
-### Prerequisites
+## 🚀 What is This Project?
 
-* Have an AWS account
-* Have a user role with the appropriate authorizations, and get his credentials
-* Have an AWS SSH key pair
-* Install AWS Command Line Interface, and log in with your credentials
+This repo gives you a ready-to-use AWS CloudFormation template and helper scripts to spin up a **3-node Hadoop cluster** on EC2.  
+It's designed for:
+- Learning AWS CloudFormation in a practical, real-world context
+- Experimenting with Hadoop clusters without manual setup
+- Building your DevOps and Big Data deployment skills
 
-We also assume that you already have an existing VPC. If you don't have one, get some information [here](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/gsg_create_vpc.htm) to create one.
+---
 
-### Launch
+## 📦 What's Included?
 
-#### With our script
+```plaintext
+README.md        # This guide!
+template.yaml    # CloudFormation template for the Hadoop cluster (edit, study, reuse)
+launch.sh        # Helper script to launch your stack with environment variables
+LICENSE          # License info
+```
+👉 [Explore all files in GitHub](https://github.com/saifeezibrahim/CloudFormation-Hadoop-Template/tree/master)
 
-Set up the required environment variables:
+---
 
+## 🛠️ Prerequisites
+
+- AWS account (with CloudFormation, EC2, and VPC permissions)
+- AWS CLI installed and configured (`aws configure`)
+- An existing VPC (see [AWS VPC Guide](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/gsg_create_vpc.htm))
+- An AWS EC2 SSH Key Pair
+
+---
+
+## 🚦 Quick Start Guide
+
+### 1. **Clone & Prepare**
+```bash
+git clone https://github.com/saifeezibrahim/CloudFormation-Hadoop-Template.git
+cd CloudFormation-Hadoop-Template
+```
+
+### 2. **Set Environment Variables**
 ```bash
 export STACK_NAME='your-stack-name'
 export SSH_KEY_NAME='your-aws-key-name'
-export VPC_CIDR='your-vpc-cidr'
+export VPC_CIDR='your-vpc-cidr'  # e.g. 172.31.0.0/16
 ```
 
-Your VPC Cidr is the IP addresses block that will be used internally by your EC2 instances. Example: `172.31.0.0/16`. You will need to create a AWS VPC first if you don't have one.
+### 3. **Launch the Cluster!**
+- **Easy mode:**  
+  ```bash
+  ./launch.sh
+  ```
+  This will use the defaults and your environment variables.
 
-Then, you can run the launch script directly, with our default parameters.
+- **Customize:**  
+  Edit `template.yaml` or invoke your own `aws cloudformation create-stack` command for more control.
 
-`$ ./launch.sh`
+### 4. **Monitor Progress**
+- Watch your stack in the AWS Console → CloudFormation.
 
-#### With your own parameters
+### 5. **Connect & Explore**
+- After stack creation, SSH into your Hadoop nodes using your keypair and public IPs.
+- Experiment with Hadoop, cluster networking, or CloudFormation edits!
 
-You can also launch your stack creation with your chosen parameters, to have more control over the type of instance, the Operating System and so on. See the full reference of the `create-stack` command [here](https://docs.aws.amazon.com/cli/latest/reference/cloudformation/create-stack.html).
+### 6. **Delete Your Stack**
+- **Command line:**
+  ```bash
+  aws cloudformation delete-stack --stack-name ${STACK_NAME}
+  ```
+- **AWS Console:**  
+  Go to CloudFormation and delete the stack.
 
+---
 
-### Monitor
+## 🎓 Learning Outcomes
 
-Log in to your AWS console, and check the creation of your stack by visiting the CloudFormation pages.
+- Understand how to automate infrastructure with CloudFormation
+- See real-world VPC, EC2, and Security Group setup
+- Practice launching and managing Hadoop clusters in the cloud
+- Safely experiment with stack updates and deletions
 
-After a few minutes, your stack must be ready.
+---
 
-### Delete your stack
+## 💡 Pro Tips
 
-From your command line:
+- Break, edit, and fix the template to maximize your learning!
+- Try scaling node count or customizing instance types.
+- Explore adding bootstrap actions or configuring Hadoop further.
 
-```bash
-$ aws cloudformation --stack-name ${STACK_NAME}
-```
+---
 
-Or log in to your AWS console, and delete the stack from the CloudFormation pages.
+## 🙋‍♂️ Credits
 
-## Credit
+Maintained by **Saifee Ibrahim**  
+Fork, star and share if you find this useful for your learning journey!
 
-Courtesy of the [Saifeez Ibrahim]
+---
 
-Enjoy 😃
+## 📄 License
+
+MIT — Free for learning and educational use.
+
+---
+
+> **Start building, breaking and learning — real cloud skills come from doing!**
